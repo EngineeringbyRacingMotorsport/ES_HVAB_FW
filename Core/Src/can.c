@@ -18,7 +18,7 @@ void CAN_Init_Custom(FDCAN_HandleTypeDef *hfdcan) {
 
     // 2. Activar la interrupció de la FIFO 0
     if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) Error_Handler();
-
+0
     // 3. Arrencar el perifèric
     if (HAL_FDCAN_Start(hfdcan) != HAL_OK) Error_Handler();
 }

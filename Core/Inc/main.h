@@ -54,6 +54,20 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
+typedef struct {
+
+	uint8_t data[8];
+
+}CAN_Msg;
+typedef struct {
+	/* ================ MISSATGE 1 ================ */
+	uint8_t ASHU;    //byte 1 i 2 (mA)
+	uint8_t ATHRhv;  //byte 0
+	uint8_t StatusError;
+
+
+} SIGNAL_dicc;
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
