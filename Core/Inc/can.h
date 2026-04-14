@@ -1,5 +1,5 @@
-#ifndef CAN_h
-#define CAN_h
+#ifndef can_h
+#define can_h
 
 #include "main.h"
 

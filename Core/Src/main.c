@@ -22,9 +22,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include"CAN.h"
+#include"can.h"
 #include<stdio.h>
-
+#include "f2p.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,7 +91,11 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+  DIG2DICCF(&DICCF);
 
+  DICCF2DICCP(&DICCF, &DICCP);
+
+  CAN_Msg_Maker(&DICCP, Msg);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */

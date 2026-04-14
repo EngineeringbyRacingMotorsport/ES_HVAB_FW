@@ -54,21 +54,6 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
-typedef struct {
-
-	uint8_t data[8];
-
-}CAN_Msg;
-typedef struct {
-	/* ================ MISSATGE 1 ================ */
-	uint8_t ASHU;    //byte 1 i 2 (mA)
-	uint8_t ATHRhv;  //byte 0
-	uint8_t StatusError;
-
-
-} SIGNAL_dicc;
-
-/* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
 #define PWRLed_Pin GPIO_PIN_7
@@ -77,6 +62,25 @@ typedef struct {
 #define HV_Indicator_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
+
+/* USER CODE END Private defines */
+/* USER CODE BEGIN Private defines */
+typedef union {
+	uint8_t array [4];
+	struct{
+
+	/* ================ MISSATGE 1 ================ */
+	uint8_t AfSHU; //byte 1 i 2 (mA)
+    uint8_t AfTHRhv;
+
+
+	};
+} DICCF_t;
+
+typedef struct {
+	uint8_t ApSHU;
+	uint8_t ApTHRhv;
+}DICCP_t;
 
 /* USER CODE END Private defines */
 
