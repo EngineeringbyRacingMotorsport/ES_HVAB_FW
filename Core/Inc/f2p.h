@@ -8,3 +8,5 @@ void DIG2DICCF(DICCF_t *DICCF);
 void DICCF2DICCP(DICCF_t *DICCF, DICCP_t *DICCP);
 
 #endif
+
+

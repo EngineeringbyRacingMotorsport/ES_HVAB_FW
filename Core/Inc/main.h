@@ -56,31 +56,32 @@ void Error_Handler(void);
 
 
 /* Private defines -----------------------------------------------------------*/
-#define PWRLed_Pin GPIO_PIN_7
-#define PWRLed_GPIO_Port GPIOB
-#define HV_Indicator_Pin GPIO_PIN_14
-#define HV_Indicator_GPIO_Port GPIOC
 
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
-/* USER CODE BEGIN Private defines */
 typedef union {
-	uint8_t array [4];
+	uint8_t array[8];
 	struct{
-
 	/* ================ MISSATGE 1 ================ */
-	uint8_t AfSHU; //byte 1 i 2 (mA)
-    uint8_t AfTHRhv;
-
+	uint8_t AfSHU;
+	uint8_t AfTHRhv;
 
 	};
 } DICCF_t;
 
 typedef struct {
-	uint8_t ApSHU;
 	uint8_t ApTHRhv;
+	uint8_t ApSHU;
+
 }DICCP_t;
+
+/* USER CODE END EFP */
+
+/* Private defines -----------------------------------------------------------*/
+#define ApTHRhv_Pin GPIO_PIN_14
+#define ApTHRhv_GPIO_Port GPIOC
+#define ApSHU_Pin GPIO_PIN_5
+#define ApSHU_GPIO_Port GPIOA
+
+/* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
