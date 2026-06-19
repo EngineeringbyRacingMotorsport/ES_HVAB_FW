@@ -60,8 +60,8 @@ all: main-build
 main-build: HVAB.elf secondary-outputs
 
 # Tool invocations
-HVAB.elf HVAB.map: $(OBJS) $(USER_OBJS) C:\EUSSMS_GIT\Firmware\ES_HVAB_FW\STM32C092FCPX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "HVAB.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\EUSSMS_GIT\Firmware\ES_HVAB_FW\STM32C092FCPX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HVAB.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+HVAB.elf HVAB.map: $(OBJS) $(USER_OBJS) C:\Users\oriol\git\HVAB\STM32C092FCPX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "HVAB.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\oriol\git\HVAB\STM32C092FCPX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HVAB.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -35,7 +35,7 @@ extern "C" {
   * @brief This is the list of modules to be used in the HAL driver
   */
 #define HAL_MODULE_ENABLED
-/* #define HAL_ADC_MODULE_ENABLED   */
+#define HAL_ADC_MODULE_ENABLED
 /* #define HAL_CRC_MODULE_ENABLED   */
 /* #define HAL_CRYP_MODULE_ENABLED   */
 /* #define HAL_I2C_MODULE_ENABLED   */
@@ -59,7 +59,7 @@ extern "C" {
 #define HAL_FLASH_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_CORTEX_MODULE_ENABLED
-/* #define HAL_FDCAN_MODULE_ENABLED   */
+#define HAL_FDCAN_MODULE_ENABLED
 /* ########################## Register Callbacks selection ############################## */
 /**
   * @brief Set below the peripheral configuration  to "1U" to add the support

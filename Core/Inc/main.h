@@ -58,28 +58,26 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 
 typedef union {
-	uint8_t array[8];
 	struct{
 	/* ================ MISSATGE 1 ================ */
-	uint8_t AfSHU;
 	uint8_t AfTHRhv;
-
+	uint16_t AfSHU;
 	};
 } DICCF_t;
 
 typedef struct {
 	uint8_t ApTHRhv;
-	uint8_t ApSHU;
-
+	uint16_t ApSHU;
 }DICCP_t;
+
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define ApTHRhv_Pin GPIO_PIN_14
-#define ApTHRhv_GPIO_Port GPIOC
-#define ApSHU_Pin GPIO_PIN_5
-#define ApSHU_GPIO_Port GPIOA
+#define AfTHRhv_Pin GPIO_PIN_14
+#define AfTHRhv_GPIO_Port GPIOC
+#define AfSHU_Pin GPIO_PIN_5
+#define AfSHU_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
