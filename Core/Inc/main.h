@@ -54,23 +54,6 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
-
-/* Private defines -----------------------------------------------------------*/
-
-typedef union {
-	struct{
-	/* ================ MISSATGE 1 ================ */
-	uint8_t AfTHRhv;
-	uint16_t AfSHU;
-	};
-} DICCF_t;
-
-typedef struct {
-	uint8_t ApTHRhv;
-	uint16_t ApSHU;
-}DICCP_t;
-
-
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -80,7 +63,17 @@ typedef struct {
 #define AfSHU_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+typedef union {
+	struct{
+	uint8_t AfTHRhv;
+	uint16_t AfSHU;
+	};
+} DICCF_t;
 
+typedef struct {
+	uint8_t ApTHRhv;
+	uint16_t ApSHU;
+}DICCP_t;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
