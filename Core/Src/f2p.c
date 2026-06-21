@@ -10,5 +10,5 @@ void DIG2DICCF(DICCF_t *DICCF){
 
 void DICCF2DICCP(DICCF_t *DICCF, DICCP_t *DICCP) {
 	DICCP->ApTHRhv      = !DICCF->AfTHRhv ;
-	DICCP->ApSHU        = ((DICCF->AfSHU*3.3)/4095)/(0.130*100)  ;
+	DICCP->ApSHU        = ((DICCF->AfSHU*3.3)/4095)/(0.130*100)*1000  ;
 };
