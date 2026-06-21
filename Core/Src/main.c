@@ -105,32 +105,34 @@ int main(void)
   DICCF_t DICCF = {0};
   DICCP_t DICCP = {0};
   CAN_Init_Custom(&hfdcan1);
+  HAL_ADCEx_Calibration_Start(&hadc1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 HAL_ADC_Start_DMA(&hadc1, (uint32_t*)DICCDMA, DMA_CH1);
 
-	 uint8_t Msg[3] = {0};
-
-	 HAL_GPIO_WritePin(GPIOB, AfSUPled_Pin, GPIO_PIN_SET);
-
-	 DIG2DICCF(&DICCF);
-
-	 DMA2DICCF(&DICCF, DICCDMA);
-
-	 DICCF2DICCP(&DICCF, &DICCP);
-
-	 CAN_Msg_Maker(&DICCP, Msg);
-
-	 CAN_Send(&hfdcan1, 0x400, Msg, 6);
-
-	 HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)DICCDMA, DMA_CH1);
+
+	  uint8_t Msg[3] = {0};
+
+	  HAL_GPIO_WritePin(GPIOB, AfSUPled_Pin, GPIO_PIN_RESET);
+
+	  DIG2DICCF(&DICCF);
+
+	  DMA2DICCF(&DICCF, DICCDMA);
+
+	  DICCF2DICCP(&DICCF, &DICCP);
+
+	  CAN_Msg_Maker(&DICCP, Msg);
+
+	  CAN_Send(&hfdcan1, 0x300, Msg, 3);
+
+	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
@@ -271,10 +273,10 @@ static void MX_FDCAN1_Init(void)
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
-  hfdcan1.Init.NominalPrescaler = 16;
+  hfdcan1.Init.NominalPrescaler = 12;
   hfdcan1.Init.NominalSyncJumpWidth = 1;
-  hfdcan1.Init.NominalTimeSeg1 = 1;
-  hfdcan1.Init.NominalTimeSeg2 = 1;
+  hfdcan1.Init.NominalTimeSeg1 = 13;
+  hfdcan1.Init.NominalTimeSeg2 = 2;
   hfdcan1.Init.DataPrescaler = 1;
   hfdcan1.Init.DataSyncJumpWidth = 1;
   hfdcan1.Init.DataTimeSeg1 = 1;
@@ -328,9 +330,6 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(AfSUPled_GPIO_Port, AfSUPled_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(AfTHRhv_GPIO_Port, AfTHRhv_Pin, GPIO_PIN_RESET);
-
   /*Configure GPIO pin : AfSUPled_Pin */
   GPIO_InitStruct.Pin = AfSUPled_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -340,9 +339,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : AfTHRhv_Pin */
   GPIO_InitStruct.Pin = AfTHRhv_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(AfTHRhv_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
