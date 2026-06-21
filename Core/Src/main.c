@@ -113,11 +113,19 @@ int main(void)
   {
 	 HAL_ADC_Start_DMA(&hadc1, (uint32_t*)DICCDMA, DMA_CH1);
 
+	 uint8_t Msg[3] = {0};
+
+	 HAL_GPIO_WritePin(GPIOB, AfSUPled_Pin, GPIO_PIN_SET);
+
 	 DIG2DICCF(&DICCF);
 
 	 DMA2DICCF(&DICCF, DICCDMA);
 
 	 DICCF2DICCP(&DICCF, &DICCP);
+
+	 CAN_Msg_Maker(&DICCP, Msg);
+
+	 CAN_Send(&hfdcan1, 0x400, Msg, 6);
 
 	 HAL_Delay(10);
     /* USER CODE END WHILE */
@@ -313,12 +321,22 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(AfSUPled_GPIO_Port, AfSUPled_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(AfTHRhv_GPIO_Port, AfTHRhv_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : AfSUPled_Pin */
+  GPIO_InitStruct.Pin = AfSUPled_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(AfSUPled_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : AfTHRhv_Pin */
   GPIO_InitStruct.Pin = AfTHRhv_Pin;
