@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000028  00000000  00000000  0000700c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000a013  00000000  00000000  00007034  2**0
+ 12 .debug_info   00009fe7  00000000  00000000  00007034  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001f63  00000000  00000000  00011047  2**0
+ 13 .debug_abbrev 00001f39  00000000  00000000  0001101b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a08  00000000  00000000  00012fb0  2**3
+ 14 .debug_aranges 00000a08  00000000  00000000  00012f58  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000773  00000000  00000000  000139b8  2**0
+ 15 .debug_rnglists 00000773  00000000  00000000  00013960  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000159b7  00000000  00000000  0001412b  2**0
+ 16 .debug_macro  000159b7  00000000  00000000  000140d3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000b75e  00000000  00000000  00029ae2  2**0
+ 17 .debug_line   0000b75e  00000000  00000000  00029a8a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000881ac  00000000  00000000  00035240  2**0
+ 18 .debug_str    000881ac  00000000  00000000  000351e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000bd3ec  2**0
+ 19 .comment      00000043  00000000  00000000  000bd394  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000024ac  00000000  00000000  000bd430  2**2
+ 20 .debug_frame  000024ac  00000000  00000000  000bd3d8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000046  00000000  00000000  000bf8dc  2**0
+ 21 .debug_line_str 00000046  00000000  00000000  000bf884  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3509,7 +3509,7 @@ void DIG2DICCF(DICCF_t *DICCF){
  8001b9e:	b082      	sub	sp, #8
  8001ba0:	af00      	add	r7, sp, #0
  8001ba2:	6078      	str	r0, [r7, #4]
-	DICCF->AfTHRhv      = HAL_GPIO_ReadPin(GPIOC, AfTHRhv_Pin    );
+	DICCF->AfTHRhv = HAL_GPIO_ReadPin(GPIOC, AfTHRhv_Pin);
  8001ba4:	2380      	movs	r3, #128	@ 0x80
  8001ba6:	01db      	lsls	r3, r3, #7
  8001ba8:	4a06      	ldr	r2, [pc, #24]	@ (8001bc4 <DIG2DICCF+0x28>)
@@ -3536,7 +3536,7 @@ void DICCF2DICCP(DICCF_t *DICCF, DICCP_t *DICCP) {
  8001bcc:	af00      	add	r7, sp, #0
  8001bce:	6078      	str	r0, [r7, #4]
  8001bd0:	6039      	str	r1, [r7, #0]
-	DICCP->ApTHRhv      = !DICCF->AfTHRhv ;
+	DICCP->ApTHRhv = !DICCF->AfTHRhv;
  8001bd2:	687b      	ldr	r3, [r7, #4]
  8001bd4:	781b      	ldrb	r3, [r3, #0]
  8001bd6:	425a      	negs	r2, r3
@@ -3545,7 +3545,7 @@ void DICCF2DICCP(DICCF_t *DICCF, DICCP_t *DICCP) {
  8001bdc:	001a      	movs	r2, r3
  8001bde:	683b      	ldr	r3, [r7, #0]
  8001be0:	701a      	strb	r2, [r3, #0]
-	DICCP->ApSHU        = ((DICCF->AfSHU*3.3)/4095)/(0.130*100)*1000  ;
+	DICCP->ApSHU = ((DICCF->AfSHU*3.3)/4095)/(0.130*100)*1000;
  8001be2:	687b      	ldr	r3, [r7, #4]
  8001be4:	885b      	ldrh	r3, [r3, #2]
  8001be6:	0018      	movs	r0, r3

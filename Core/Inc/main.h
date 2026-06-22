@@ -65,11 +65,9 @@ void Error_Handler(void);
 #define AfSHU_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-typedef union {
-	struct{
+typedef struct {
 	uint8_t AfTHRhv;
 	uint16_t AfSHU;
-	};
 } DICCF_t;
 
 typedef struct {
